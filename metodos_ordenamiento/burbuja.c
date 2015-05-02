@@ -3,10 +3,15 @@
 //#include <conio.h>
 #define clrscr() system("clear")
 #define getch() system("read")
-#define TAM 10
+#define TAM 0x0A
+//Limites o rango
+#define LIMS 0x0A
+#define LIMF 0x01
+////////////////
 //Metodos para ordenar//////////
-int * burbuja(int * array);
-int * inserccion(int * array);
+int * burbuja(int * array,int o);
+int * inserccion(int * array, int o);
+int * quicksort(int * array, int o);
 
 ///////////////////////////////
 int * gen(int * array);
@@ -15,49 +20,60 @@ void main()
 {
     int * array=malloc(TAM*sizeof(int));
     clrscr();
-    array=gen(array);
+    array=gen(array); 
     print(array);
-    //array=burbuja(array);
-    //print(array);
-    array=inserccion(array);
+    //array=inserccion(array,1); //1 when is normal and 0 when is reverse
+    array=burbuja(array,1); //1 when is normal and 0 when is reverse
+    print(array);
+    //array=inserccion(array,0); //1 when is normal and 0 when is reverse
+    array=burbuja(array,0); //1 when is normal and 0 when is reverse
     print(array);
     getch();
 }
-int * burbuja (int * array)
+int * burbuja (int * array, int o)
 {
-    int i,j,aux;
+    int i,j,aux,mode;
     for(i=0;i<TAM;i++)
     {
 	for(j=0;j<TAM-1;j++)
 	{
-	    if(array[j]>array[j+1])
+	    if(o)
+	        mode=array[j] > array[j+1];
+	    else
+	        mode=array[j] < array[j+1];
+	    if(mode)
 	    {
 		aux=array[j];
 		array[j]=array[j+1];
 		array[j+1]=aux;
 	    }
+	    //print(array); 
 	}
     }
     return array;
 }
-int * inserccion(int * array)
+int * inserccion(int * array, int o)
 {
-    int i,j,m,elem;
+    int i,j,m,elem,mode;
     for (i=0;i<TAM-1;i++)
     {
 	m=i+1;
 	elem=array[m];
 	for (j=m;j>0;j--)
 	{
-	    if (elem > array[j-1])
+	    if(o)
+	        mode=elem < array[j-1];
+	    else
+	        mode=elem > array[j-1];
+	    if (mode)
 	    {
 		array[j]=array[j-1];
 		array[j-1]=elem;
 	    }
 	    else
 		break;
+	//printf("elem: %d; ",elem); print(array); 
 	}
-	printf("elem: %d; ",elem); printf("i: %d: ",i); print(array); 
     }
     return array;
 }
@@ -69,9 +85,10 @@ int * gen(int * array)
     srand(time(NULL));
     for(i=0;i<TAM;i++)
     {
-    	 array[i]=1+rand()%((TAM+1)-1);
+    	 array[i]=LIMF+rand()%((LIMS+1)-LIMF);
     }
-    //Verificar si se repiten los elementos
+    //print(array); //Esto esta para posible eliminación
+    /*//Verificar si se repiten los elementos
     do
     {
     	for (i=0;i<TAM;i++)
@@ -82,7 +99,7 @@ int * gen(int * array)
 		{
 		    igual=1;
 		    //printf("P:%d; true %d || %d; ",i,array[i],array[j]);
-    		    array[i]=1+rand()%((TAM+1)-1);
+    	 	    array[i]=LIMF+rand()%((LIMS+1)-LIMF);
 		    //printf("replaced by: %d\n",array[i]);
 		    i=0; j=0;
 		    break;
@@ -93,7 +110,7 @@ int * gen(int * array)
 		}
 	    }
     	}
-    } while(igual);
+    } while(igual);*/
     return array;
 }
 //Metodo para imprimir
