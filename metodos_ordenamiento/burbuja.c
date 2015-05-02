@@ -14,10 +14,14 @@ void print();
 void main()
 {
     int * array=malloc(TAM*sizeof(int));
+    clrscr();
     array=gen(array);
     print(array);
-    array=burbuja(array);
+    //array=burbuja(array);
+    //print(array);
+    array=inserccion(array);
     print(array);
+    getch();
 }
 int * burbuja (int * array)
 {
@@ -36,9 +40,26 @@ int * burbuja (int * array)
     }
     return array;
 }
-int * inserccion()
+int * inserccion(int * array)
 {
-
+    int i,j,m,elem;
+    for (i=0;i<TAM-1;i++)
+    {
+	m=i+1;
+	elem=array[m];
+	for (j=m;j>0;j--)
+	{
+	    if (elem > array[j-1])
+	    {
+		array[j]=array[j-1];
+		array[j-1]=elem;
+	    }
+	    else
+		break;
+	}
+	printf("elem: %d; ",elem); printf("i: %d: ",i); print(array); 
+    }
+    return array;
 }
 
 //Generador de Array
