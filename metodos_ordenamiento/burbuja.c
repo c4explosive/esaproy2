@@ -37,6 +37,7 @@ int * burbuja (int * array)
 		array[j+1]=aux;
 	    }
 	}
+	//printf("i: %d: ",i); print(array); 
     }
     return array;
 }
