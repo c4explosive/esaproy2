@@ -4,7 +4,11 @@
 #define clrscr() system("clear")
 #define getch() system("read")
 #define TAM 10
+//Metodos para ordenar//////////
 int * burbuja(int * array);
+int * inserccion(int * array);
+
+///////////////////////////////
 int * gen(int * array);
 void print();
 void main()
@@ -32,6 +36,11 @@ int * burbuja (int * array)
     }
     return array;
 }
+int * inserccion()
+{
+
+}
+
 //Generador de Array
 int * gen(int * array)
 {
