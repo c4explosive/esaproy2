@@ -5,7 +5,7 @@
 #define getch() system("read")
 #define TAM 0x0A
 //Limites o rango
-#define LIMS 0x4A
+#define LIMS 0xAA
 #define LIMF 0x01
 //Metodos para ordenar//////////
 ///////////Quicksort///////////////////////////////////
@@ -18,12 +18,7 @@ void print();
 void main()
 {
     int * array=malloc(TAM*sizeof(int));
-    srand(time(NULL));
     clrscr(); 
-    array=gen(array); 
-    print(array);
-    quicksort(array,0,TAM-1,1); //1 when is normal and 0 when is reverse
-    print(array);
     array=gen(array); 
     print(array);
     quicksort(array,0,TAM-1,1); //1 when is normal and 0 when is reverse
@@ -71,6 +66,7 @@ void swap(int *array, int num1, int num2)
 int * gen(int * array)
 {
     int i,j,val,igual;
+    srand(time(NULL));
     for(i=0;i<TAM;i++)
     {
     	 array[i]=LIMF+rand()%((LIMS+1)-LIMF);
