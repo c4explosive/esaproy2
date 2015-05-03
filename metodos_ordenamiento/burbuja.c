@@ -3,7 +3,7 @@
 //#include <conio.h>
 #define clrscr() system("clear")
 #define getch() system("read")
-#define TAM 0x0A
+#define TAM 0x06
 //Limites o rango
 #define LIMS 0x0A
 #define LIMF 0x01
@@ -11,7 +11,10 @@
 //Metodos para ordenar//////////
 int * burbuja(int * array,int o);
 int * inserccion(int * array, int o);
+///////////Quicksort////////////////
 int * quicksort(int * array, int o);
+//int cpivot(int len);
+/////////////////////////////////////
 
 ///////////////////////////////
 int * gen(int * array);
@@ -23,11 +26,14 @@ void main()
     array=gen(array); 
     print(array);
     //array=inserccion(array,1); //1 when is normal and 0 when is reverse
-    array=burbuja(array,1); //1 when is normal and 0 when is reverse
-    print(array);
+    //array=burbuja(array,1); //1 when is normal and 0 when is reverse
+    //array=quicksort(array,1); //1 when is normal and 0 when is reverse
+    //print(array);
     //array=inserccion(array,0); //1 when is normal and 0 when is reverse
-    array=burbuja(array,0); //1 when is normal and 0 when is reverse
-    print(array);
+    //array=burbuja(array,0); //1 when is normal and 0 when is reverse
+    array=quicksort(array,0); //1 when is normal and 0 when is reverse
+    //quicksort(array,0); //1 when is normal and 0 when is reverse
+    //print(array);
     getch();
 }
 int * burbuja (int * array, int o)
@@ -77,7 +83,20 @@ int * inserccion(int * array, int o)
     }
     return array;
 }
-
+//Quicksort method////////////////
+int * quicksort(int * array, int o)
+{
+    int ipivot=
+    
+}
+/*int cpivot(int len)
+{
+    int pivot;
+    srand(time(NULL));
+    pivot=1+rand()%((len+1)-1);  
+    return pivot;  
+}*/
+//////////////////////////////////
 //Generador de Array
 int * gen(int * array)
 {
