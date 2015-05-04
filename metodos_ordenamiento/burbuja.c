@@ -36,35 +36,39 @@ void main()
     //print(array);
     getch();
 }
-int * burbuja (int * array, int o)
+
+/*****************************************************/
+
+int * burbuja (int * array, int o) //en este método o función se reciben dos parámetros, uno que es la array a modificar y el otro que dice el tipo de orden que va manejar. Sea ascendente o descendente.
 {
-    int i,j,aux,mode;
-    for(i=0;i<TAM;i++)
+    int i,j,aux,mode; //Se declaran cuatro variables, i y j para contadores; aux para trabajar un intercambio y mode que es lo que decide si el se compara para orden descendente o descendente según la variable o.
+    for(i=0;i<TAM;i++) //En estos bucles se comienza a comparar un elemento con todos.
     {
-	for(j=0;j<TAM-1;j++)
+	for(j=0;j<TAM-1;j++) //En este bucle se verá la comparaciones de un elemento con otro.
 	{
-	    if(o)
+	    if(o) //Aquí se ve de que modo se ordenará.
 	        mode=array[j] > array[j+1];
 	    else
 	        mode=array[j] < array[j+1];
-	    if(mode)
+	    if(mode) //Si se cumple la condición según sea el caso, el elemento actual se intercambiará con el siguiente.
 	    {
 		aux=array[j];
 		array[j]=array[j+1];
 		array[j+1]=aux;
 	    }
-	    //print(array); 
 	}
-    }
+    } 
     return array;
 }
-int * inserccion(int * array, int o)
+
+
+int * inserccion(int * array, int o) //Lo mismo que en los demás métodos, se recibe un array (arreglo) y un indicador de la forma a ordenar.
 {
-    int i,j,m,elem,mode;
-    for (i=0;i<TAM-1;i++)
+    int i,j,m,elem,mode; 
+    for (i=0;i<TAM-1;i++) //Muy similar al método burbuja, se comienza con un bucle principal.
     {
 	m=i+1;
-	elem=array[m];
+	elem=array[m]; //En esta parte del método, se utiliza una adaptación de insertar elementos en un arreglo, sin embargo hay condiciones.
 	for (j=m;j>0;j--)
 	{
 	    if(o)
@@ -73,16 +77,18 @@ int * inserccion(int * array, int o)
 	        mode=elem > array[j-1];
 	    if (mode)
 	    {
-		array[j]=array[j-1];
+		array[j]=array[j-1]; //Dependiendo del caso, los elementos se correrán hacia la derecha y se ingresará el elemento de índice m.
 		array[j-1]=elem;
 	    }
 	    else
-		break;
-	//printf("elem: %d; ",elem); print(array); 
+		break; //Si no cumple la condición, se rompe con ese elemento y no se hace nada, procede al siguiente índice m.
 	}
     }
     return array;
 }
+
+/************************************************/
+
 /*//Quicksort method////////////////
 int * quicksort(int * array, int o)
 {
