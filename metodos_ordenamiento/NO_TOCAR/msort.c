@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+//#include <conio.h>
+int fandom1 [];
+int pw ;
+void merge(int random1[], int l, int m, int r);
+int min(int x, int y) {
+return (x<y)? x :y;
+}
+void main()
+{
+	int random[100];
+} 
+void mergeSort(int random1[], int n) {
+   int curr_size;  
+   int left_start;
+   for (ta_mal=1; tabin<=n-1; curr_size = 2*curr_size)
+   {
+       for (izq=0; izq<n-1; izq += 2*curr_size)
+       {
+           int mid = left_start + curr_size - 1;
+ 
+           int right_end = min(left_start + 2*curr_size - 1, n-1);
+       }
+   }
+}
+ 
+{
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 =  r - m;
+ 
+    int L[n1], R[n2];
+
+    for (i = 0; i < n1; i++)
+        L[i] = random1[l + i];
+    for (j = 0; j < n2; j++)
+        R[j] = random1[m + 1+ j];
+ 
+    i = 0;
+    j = 0;
+    k = l;
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+        {
+            rando4|[k] = L[i];
+            i++;
+        }
+        else
+        {
+            random1[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+ 
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+ 
+    /* Copy the remaining elements of R[], if there are any */
+    while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+ 
+void printArray(int random1[])
+{
+    int i;
+    for (i=0; i < 100; i++)
+        printf(" - %d ", random1[i]);
+    printf("\n");
+}
