@@ -8,11 +8,11 @@
 #define LIMS 0xAA
 #define LIMF 0x01
 //Metodos para ordenar//////////
-///////////Quicksort///////////////////////////////////
+////////////////////Quicksort///////////////////////////////////
 void quicksort(int * array,int prin, int fin,  int o);
-int particionar(int * array,int ipiv,int prin, int fini,int o);
+int particionar(int * array,int ipiv,int prin, int fin,int o);
 void swap(int* array, int num1, int num2);
-///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
 int * gen(int * array);
 void print();
 void main()
