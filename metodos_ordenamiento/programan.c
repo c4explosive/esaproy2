@@ -30,14 +30,14 @@ int * gen(int * array);
 int *inserccion(int * array, int o);
 int *shell(int * array);
 int *shell1(int * array);
-int *selection( int * array);
+int *selection( int * array,int o);
 ////////////////////Quicksort///////////////////////////////////
 void quicksort(int * array,int prin, int fin,  int o);
 int particionar(int * array,int ipiv,int prin, int fin,int o);
 void swap(int* array, int num1, int num2);
 ///////////////////////////////////////////////////////////////
-void merge(int [],int ,int ,int );
-void part(int [],int ,int );
+void merge(int [],int ,int ,int ,int o);
+void part(int [],int ,int ,int o);
 void menu();
 void menu1(int *array);
 void print();
@@ -98,7 +98,7 @@ void menu()//función que contiene el menú
 case 4:
 	  printf("Arreglo desordenado: \n");
 	  print(array);//impresión del arreglo desordernado
-	  array=selection(array);//llamada de la función inserción
+	  array=selection(array,0);//llamada de la función inserción
 	  printf("Arreglo ordenado: \n");
 	  print(array);//impresión del arreglo ordernado
 	  getch();
@@ -117,7 +117,7 @@ case 5: //quicksort
 case 6: //mergesort
 	  printf("Arreglo desordenado: \n");
 	  print(array);//impresión del arreglo desordernado
- 	  part(array,0,TAM-1);
+ 	  part(array,0,TAM-1,1);
        	  printf("Arreglo ordenado: \n");
 	  print(array);//impresión del arreglo ordernado
           getch();
@@ -292,16 +292,21 @@ void menu1( int * array)//menu de shell sort
 
 //metodo selection sort
 
-int *selection(int * array)
+int *selection(int * array,int o)
 {
-   int i, j,k,var;
+   int i, j,k,var,mode;
    for(i=0;i<TAM;i++)//recorrido del arreglo
      {
       j=i;//se asigna a j la posicion i
       
        for(j=i;j<TAM;j++)//permite recorrer en busca del elemento menor
           {
-	    if(array[j]<array[i])//compara si el elemento es menor
+	if (o)
+	    mode=array[j]<array[i];
+	else
+	    mode=array[j]>array[i];
+
+	    if(mode)//compara si el elemento es menor o mayor
  		{
 		 var=array[j];//se guarda el elemento menor
 		 array[j]=array[i];// se guarda el elemento mayor para compararlo en el if
@@ -355,28 +360,32 @@ void swap(int *array, int num1, int num2) //Método adicional, para facilitar el 
 }
 /* Cabe destacar que ni quicksort ni swap retornan nada, la razón de esto es porque como se trabaja con direcciones de memorias, internamente la dirección de memoria de un elemento del arreglo es la misma en todos los lados del programa, por lo que no es necesario hacerlo saber a las demás partes del programa.*/
 
-void part(int * arr,int min,int max)
+void part(int * arr,int min,int max,int o)
 {
  int mid;
  if(min<max)
  {
    mid=(min+max)/2;   //creación del pivote
-   part(arr,min,mid);   //función recursiva
-   part(arr,mid+1,max);
-   merge(arr,min,mid,max);
+   part(arr,min,mid,o);   //función recursiva
+   part(arr,mid+1,max,o);
+   merge(arr,min,mid,max,o);
  }
 }
 
 
-void merge(int arr[],int min,int mid,int max)//función de mezcla
+void merge(int arr[],int min,int mid,int max,int o)//función de mezcla
 {
-  int tmp[100];
-  int i,j,k,m;
+  int tmp[TAM];
+  int i,j,k,m,mode;
   j=min;
   m=mid+1;
   for(i=min; j<=mid && m<=max ; i++)
   {
-     if(arr[j]<=arr[m]) //sorteo de variables.
+     if (o)
+	mode=arr[j]<=arr[m];
+     else
+	mode=arr[j]>=arr[m];
+     if(mode) //sorteo de variables. //Cambiar para a o d
      {                 //menores a la izquierda del pivote
 	 tmp[i]=arr[j];
 	 j++;
@@ -387,7 +396,7 @@ void merge(int arr[],int min,int mid,int max)//función de mezcla
 	 m++;
      }
   }
-  if(j>mid)
+  if(j>mid) 
   {
      for(k=m; k<=max; k++)   //mayores a la derecha del pivote
      {
