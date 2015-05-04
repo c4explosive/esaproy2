@@ -41,7 +41,7 @@ void part(int [],int ,int ,int o);
 void menu();
 void menu1(int *array);
 void print();
-
+int menuox( );
 
 int main()//función principal
 {
@@ -50,7 +50,7 @@ int main()//función principal
 }
 void menu()//función que contiene el menú
 {
-    int n,m=0,u=0, cont=1;//declaración de variables
+    int n,m=0,u=0, cont=1,o;//declaración de variables
     int * array=malloc(TAM*sizeof(int));
     clrscr();
 
@@ -73,18 +73,19 @@ void menu()//función que contiene el menú
     switch(n)
 {
     case 1:
+	     o=menuox();
 	     printf("Arreglo desordenado: \n");
 	     print(array);//impresión del arreglo desordernado
-	     array=burbuja(array,1);//llamada de la función burbuja
+	     array=burbuja(array,o);//llamada de la función burbuja
 	     printf("Arreglo ordenado: \n");
 	     print(array);//impresión del arreglo ordenado
-	     u=0;
 	  getch();
 	  break;
    case 2:
+	    o=menuox();
 	    printf("Arreglo desordenado: \n");
 	    print(array);//impresión del arreglo desordernado
-	    array=inserccion(array,0);//llamada de la función inserción
+	    array=inserccion(array,o);//llamada de la función inserción
 	    printf("Arreglo ordenado: \n");
 	    print(array);//impresión del arreglo ordenado
 	  getch();
@@ -96,9 +97,10 @@ void menu()//función que contiene el menú
 	   getch();
 	  break;
 case 4:
+	  o=menuox();
 	  printf("Arreglo desordenado: \n");
 	  print(array);//impresión del arreglo desordernado
-	  array=selection(array,0);//llamada de la función inserción
+	  array=selection(array,o);//llamada de la función inserción
 	  printf("Arreglo ordenado: \n");
 	  print(array);//impresión del arreglo ordernado
 	  getch();
@@ -106,18 +108,20 @@ case 4:
 
 
 case 5: //quicksort
+	  o=menuox();
           printf("Arreglo desordenado: \n");
 	  print(array);//impresión del arreglo desordernado
-	  quicksort(array,0,TAM-1,0); //llamada de la función inserción
+	  quicksort(array,0,TAM-1,o); //llamada de la función inserción
 	  printf("Arreglo ordenado: \n");
 	  print(array);//impresión del arreglo ordernado
 	  getch();
 	  break;
 
 case 6: //mergesort
+	  o=menuox();
 	  printf("Arreglo desordenado: \n");
 	  print(array);//impresión del arreglo desordernado
- 	  part(array,0,TAM-1,1);
+ 	  part(array,0,TAM-1,o);
        	  printf("Arreglo ordenado: \n");
 	  print(array);//impresión del arreglo ordernado
           getch();
@@ -256,11 +260,11 @@ void menu1( int * array)//menu de shell sort
   {
    if(u)
   clrscr();
-  printf("\n MENU SHELL SORT\n");
+  printf("\n MENU DE ORDENADO\n");
   printf("1.Mayor a Menor\n");
   printf("2.Menor a mayor\n");
   printf("3. Salir\n");
-  printf("Escoja una opcion");
+  printf("Escoja una opcion:");
   scanf("%d", &n);
   switch(n)
      {
@@ -429,7 +433,6 @@ int * gen(int * array)
     return array;
 }
 
-
 void print(int * array)//Metodo para imprimir los elementos del arreglo
 {
     int i;
@@ -439,4 +442,37 @@ void print(int * array)//Metodo para imprimir los elementos del arreglo
 	printf("%d,",array[i]);
     }
     printf("\b]\n");
+}
+
+int menuox( )//menu de los demás métodos
+{
+  int n,u=0, cont=1;
+  
+
+  do
+  {
+   if(u)
+  clrscr();
+  printf("\n MENU DE ORDENADO\n");
+  printf("1.Mayor a Menor\n");
+  printf("2.Menor a mayor\n");
+  printf("Escoja una opcion:");
+  scanf("%d", &n);
+  switch(n)
+     {
+      case 1://está primera opción permite ordenar los número de mayor a menor
+	     
+             printf("Mayor a menor\n");
+             return 0;
+             break;
+       case 2://está segunda opción permite ordenar los número de menor a mayor
+	     printf("Menor a mayor\n");
+             return 1;
+             break;
+     default: printf("Escriba una opcion correcta\n");//envía un mensaje indicandole al usuario si la opción ingresada es inválida
+              break;
+      }
+    }while(cont);//mantiene el ciclo repetitivo
+
+
 }
