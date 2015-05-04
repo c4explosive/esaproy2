@@ -12,7 +12,7 @@
 int * burbuja(int * array,int o);
 int * inserccion(int * array, int o);
 ///////////Quicksort////////////////
-int * quicksort(int * array, int o);
+//int * quicksort(int * array, int o);
 //int cpivot(int len);
 /////////////////////////////////////
 
@@ -29,11 +29,11 @@ void main()
     //array=burbuja(array,1); //1 when is normal and 0 when is reverse
     //array=quicksort(array,1); //1 when is normal and 0 when is reverse
     //print(array);
-    //array=inserccion(array,0); //1 when is normal and 0 when is reverse
-    //array=burbuja(array,0); //1 when is normal and 0 when is reverse
-    array=quicksort(array,0); //1 when is normal and 0 when is reverse
+    array=inserccion(array,1); //1 when is normal and 0 when is reverse
+    //array=burbuja(array,1); //1 when is normal and 0 when is reverse
+    //array=quicksort(array,0); //1 when is normal and 0 when is reverse
     //quicksort(array,0); //1 when is normal and 0 when is reverse
-    //print(array);
+    print(array);
     getch();
 }
 
