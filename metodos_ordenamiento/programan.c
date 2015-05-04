@@ -21,7 +21,10 @@
 
 #define clrscr() system("clear")
 #define getch() system("read")
-#define TAM 10
+#define TAM 0x0A
+//Limites o rango
+#define LIMS 0xAA
+#define LIMF 0x01
 int * burbuja(int * array, int o);
 int * gen(int * array);
 int *inserccion(int * array, int o);
@@ -65,7 +68,7 @@ void menu()//función que contiene el menú
      printf("      5.Ordenacion quicksort\n");
      printf("      6.Ordenacion Mergesort\n");
      printf("      7.Salir\n");
-    printf("       Escoja una opcion\n");
+    printf("       Escoja una opcion: ");
     scanf("%d",&n);//lectura del numero insertado
     switch(n)
 {
@@ -114,7 +117,7 @@ case 5: //quicksort
 case 6: //mergesort
 	  printf("Arreglo desordenado: \n");
 	  print(array);//impresión del arreglo desordernado
- 	  part(array,0,99);
+ 	  part(array,0,TAM-1);
        	  printf("Arreglo ordenado: \n");
 	  print(array);//impresión del arreglo ordernado
           getch();
@@ -405,41 +408,15 @@ void merge(int arr[],int min,int mid,int max)//función de mezcla
 }
 
 
-
-
 //Generador de Array
-int * gen(int * array)//función que permite generar los elementos del arreglo
+int * gen(int * array)
 {
     int i,j,val,igual;
     srand(time(NULL));
-    for(i=0;i<TAM;i++)//ciclo que permite asignar los elementos al arreglo
+    for(i=0;i<TAM;i++)
     {
-	 array[i]=1+rand()%((TAM+1)-1);//se genera un número random
+    	 array[i]=LIMF+rand()%((LIMS+1)-LIMF);
     }
-    //Verificar si se repiten los elementos
-    do
-    {
-	for (i=0;i<TAM;i++)
-	{
-	    for (j=0;j<TAM;j++)
-	    {
-		if (array[i]==array[j] && (i != j) )
-		{
-		    igual=1;
-		    //printf("P:%d; true %d || %d; ",i,array[i],array[j]);
-		    array[i]=1+rand()%((TAM+1)-1);
-		    //printf("replaced by: %d\n",array[i]);
-		    i=0; j=0;
-		    break;
-		}
-		else
-		{
-		    igual=0;
-		}
-	    }
-	}
-    } while(igual);
-   // getch();
     return array;
 }
 
