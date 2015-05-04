@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <conio.h>
+void main(){
+int random1[100];
+int k, v, ch1, w, i;
+clrscr();
+printf("Metodo Shell\n");
+				printf("Desea que se ordene de manera\n1. ascendente\n2. descendente");
+				
+				scanf("%d", &ch1);
+				
+				if(ch1==1){
+				k=random1.length/2;
+				while(k>=1){
+					for(i=k; i<random1.length; i++){
+						int v=random1[i];
+						int w= i-k;
+						while(w>=0 && random1[w]<v){
+							random1[w+k]=random1[w];
+							w-=k;
+						}
+					}
+				}
+				}else{
+					k=random1.length/2;
+				while(k>=1){
+					for(i=k; i<random1.length; i++){
+						int v=random1[i];
+						int w= i-k;
+						while(w>=0 && random1[w]>v){
+							random1[w+k]=random1[w];
+							w-=k;
+						}
+					}
+				}
+				}
+				for(i=0; i<100; i++){
+					printf(" - %d", random1[i]);
+				}
+getch();
+}
