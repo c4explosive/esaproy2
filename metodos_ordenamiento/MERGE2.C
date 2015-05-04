@@ -4,18 +4,7 @@ void merge(int [],int ,int ,int );
 void part(int [],int ,int );
 int main()
 {
- int arr[100];
- int i;
- printf("\n\t------- Metodo de ordenamiento por mezcla -------\n\n");
- for(i=0; i<100; i++)
- {
-   arr[i]=rand()%100+1;   //carga de vector con variables aleatorias.
- }
  part(arr,0,99);
- printf("\n\t------- Mezclar elementos... -------\n\n");
- for(i=0; i<100;i++)
- printf("%d ",arr[i]);
- getch();
  return 0;
 }
 
